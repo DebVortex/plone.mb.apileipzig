@@ -1,0 +1,5 @@
+setuptools
+plone.app.dexterity
+anyjson
+dedun
+plone.memoize

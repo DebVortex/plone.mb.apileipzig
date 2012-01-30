@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:grok="http://namespaces.zope.org/grok"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="plone.mb.apileipzig">
+
+    <include package=".content" />
+    <include package=".browser" />
+
+    <genericsetup:registerProfile
+        name="default"
+        title="API Leipzig"
+        description="Several Contenttypes to use the opendata api of leipzig"
+        directory="profiles/default"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+</configure>

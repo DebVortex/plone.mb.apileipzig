@@ -1,0 +1,3 @@
+<object name="portal_types">
+ <object name="plone.mb.apileipzig.mediahandbook" meta_type="Dexterity FTI" />
+</object>

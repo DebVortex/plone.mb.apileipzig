@@ -1,0 +1,31 @@
+Metadata-Version: 1.0
+Name: plone.mb.apileipzig
+Version: 0.1
+Summary: A dexterity based plonepackage for the opendata interface of the city Leipzig
+Home-page: https://bitbucket.org/Deb_Vortex/plone.mb.apileipzig
+Author: Max Brauer
+Author-email: max.brauer@inqbus.de
+License: BSD License
+Description: Introduction
+        ============
+        
+        
+        
+        Changelog
+        =========
+        
+        0.1
+        -------------------
+        
+        - Initial release
+        
+        Contribution
+        ============
+        
+        * Max Brauer, Author
+        * Markus Markus Zapke-Gründemann, Author of Dedun the python client for the 
+        api.leipzig
+        * everyone from apileipzig.de
+Keywords: Plone Dexterity API Leipzig OpenData
+Platform: UNKNOWN
+Classifier: Programming Language :: Python

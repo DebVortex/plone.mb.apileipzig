@@ -1,0 +1,99 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+    xmlns:tal="http://xml.zope.org/namespaces/tal"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="plone.mb.apileipzig">
+
+    <body>
+        <div metal:fill-slot="main">
+            <tal:main-macro metal:define-macro="main"
+                tal:define="kssClassesView context/@@kss_field_decorator_view;
+                            getKssClasses nocall:kssClassesView/getKssClassesInlineEditable;">
+                <tal replace="structure provider:plone.abovecontenttitle"></tal>
+
+                <h1 metal:use-macro="here/kss_generic_macros/macros/generic_title_view">
+                    Title or id
+                </h1>
+
+                <div tal:replace="structure provider:plone.belowcontenttitle"/>
+
+                <p metal:use-macro="here/kss_generic_macros/macros/generic_description_view">
+                    Description
+                </p>
+
+                <div tal:replace="structure provider:plone.abovecontentbody" />
+
+                <div tal:condition="view/working|nothin">
+
+                    <p id="alphabetical_ordered_links">
+                        <a tal:repeat="link view/link_list" href="" id=""
+                           tal:attributes="href link/url"
+                           tal:content="link/symbol">
+                            CHAR
+                        </a>
+                    </p>
+
+                    <div tal:condition="view/companies" id="companies">
+                        <tal:companylist repeat="company view/companies">
+                            <a href="" tal:attributes="href company/link" tal:content="company/title">
+                                COMPANY
+                            </a><br />
+                        </tal:companylist>
+                    </div>
+
+                    <div tal:condition="view/company" tal:define="company view/company">
+                        <h2 tal:content="company/title">TITEL</h2>
+                        <p>
+                            <b>Straße:</b> 
+                            <span tal:replace="structure company/street_and_housenumber">STREET HOUSENUMBER</span><br />
+                            <b>Plz, Stadt:</b>
+                            <span tal:replace="structure company/postcode_and_city">POSTCODE CITY</span><br />
+                        </p>
+                        <p>
+                          
+                        </p>
+                        <p>
+                            <span tal:condition="company/phone">
+                                <b>Telefonnummer:</b> 
+                                <span tal:replace="company/phone">
+                                    PHONE NUMBER
+                                </span>
+                            </span>
+                            <span tal:condition="company/fax"> 
+                                <b>Fax:</b>
+                                <span tal:replace="company/fax">
+                                    FAX NUMBER
+                                </span>
+                            </span>
+                        </p>
+                        <p>
+                            <span tal:condition="company/email">
+                                <b>E-Mail:</b>
+                                <a href="" tal:attributes="href company/mailto" tal:content="company/email">
+                                    EMAIL 
+                                </a>
+                                <br />
+                            </span>
+                            <span tal:condition="company/website">
+                                <b>Website:</b>
+                                <a href="" tal:attributes="href company/website" tal:content="company/website"> 
+                                    WEBSITE
+                                </a>
+                                <br />
+                            </span>
+                        </p>
+                    </div>
+                
+                </div>
+
+                <div tal:condition="not:view/working">
+                    Entweder wurde kein API Key definiert oder der eingegebene API Key ist falsch. Bitte gehen Sie ins
+                    Plone Konfigurationseinstellungen und geben sie bei "API Leipzig" einen validen API Key ein.
+                </div>
+                    
+            </tal:main-macro>
+        </div>
+    </body>
+</html> 
