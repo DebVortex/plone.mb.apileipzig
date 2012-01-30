@@ -59,16 +59,16 @@ class MediaHandbookView(BrowserView):
         self.build_alphabetical_sorted_dict(self.companies)
         self.build_link_list()
         if self.requested_company_id:
-            company = selfmediahandbook.get(id=self.requested_company_id)
-            self.company = {'title': company.name,
-                'street_and_housenumber': self.build_street_and_housenumber(company),
-                'postcode_and_city': self.build_postcode_and_city(company),
-                'phone': company.phone_primary,
-                'fax': company.fax_primary,
-                'mailto': self.build_mailto(company),
-                'email': company.email_primary,
-                'website': company.url_primary,
-            }
+            company = self.mediahandbook.get(id=self.requested_company_id)
+            self.company = dict()
+            self.company['title'] = getattr(company, 'name', None)
+            self.company['phone'] = getattr(company, 'phone_primary', None)
+            self.company['fax'] = getattr(company, 'fax_primary', None)
+            self.company['email'] = getattr(company, 'email_primary', None)
+            self.company['website'] = getattr(company, 'url_primary', None)
+            self.company['street_and_housenumber'] = self.build_street_and_housenumber(company)
+            self.company['postcode_and_city'] = self.build_postcode_and_city(company)
+            self.company['mailto'] = self.build_mailto(company)
             return self.index()
         if self.requested_companies:
             self.companies_to_show =\
@@ -163,7 +163,6 @@ class MediaHandbookView(BrowserView):
         """
         """
         now=time.time()
-
         chooser=getUtility(ICacheChooser)
         cache=chooser("apileipzig")
         cached_data=cache.get(self.context.title, None)

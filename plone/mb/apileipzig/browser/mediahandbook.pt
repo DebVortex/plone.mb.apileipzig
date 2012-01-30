@@ -35,11 +35,11 @@
                         </a>
                     </p>
 
-                    <div tal:condition="view/companies" id="companies">
+                    <div tal:condition="not:view/requested_company_id" id="companies">
                         <tal:companylist repeat="company view/companies">
                             <a href="" tal:attributes="href company/link" tal:content="company/title">
                                 COMPANY
-                            </a><br />
+                            </a><br /> 
                         </tal:companylist>
                     </div>
 
@@ -47,9 +47,9 @@
                         <h2 tal:content="company/title">TITEL</h2>
                         <p>
                             <b>Straße:</b> 
-                            <span tal:replace="structure company/street_and_housenumber">STREET HOUSENUMBER</span><br />
+                            <span tal:replace="structure company/street_and_housenumber|nothing">STREET HOUSENUMBER</span><br />
                             <b>Plz, Stadt:</b>
-                            <span tal:replace="structure company/postcode_and_city">POSTCODE CITY</span><br />
+                            <span tal:replace="structure company/postcode_and_city|nothing">POSTCODE CITY</span><br />
                         </p>
                         <p>
                           
