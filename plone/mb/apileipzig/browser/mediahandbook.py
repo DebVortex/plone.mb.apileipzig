@@ -91,6 +91,8 @@ class MediaHandbookView(BrowserView):
             except HTTPError, e:
                 return
             return (mediahandbook, companies)
+        else:
+            return (None, None)
 
     def build_alphabetical_sorted_dict(self, companies):
         """
@@ -170,7 +172,6 @@ class MediaHandbookView(BrowserView):
             (timestamp, (mediahandbook, companies)) = cached_data
             if now-timestamp < self.context.cache_timeout:
                 return (mediahandbook, companies)
-
             (mediahandbook, companies) = self.get_companies()
             cache[self.context.title] = (now + self.context.cache_timeout, 
                 (mediahandbook, companies))
